@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Glauco Barbeiro | Agendamento</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="badge">GB</div>
+      <div>
+        <h1>Glauco Barbeiro</h1>
+        <p>Agendamento online</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Agende seu horário</h2>
+      <form id="form">
+        <label>Nome<input id="name" required></label>
+        <label>WhatsApp<input id="phone" inputmode="tel" placeholder="(12) 99999-9999" required></label>
+        <label>Serviço<select id="service" required><option value="">Selecione</option></select></label>
+        <label>Data<input id="date" type="date" required></label>
+        <label>Horário<select id="time" required><option value="">Selecione serviço e data</option></select></label>
+        <button type="submit">Confirmar agendamento</button>
+      </form>
+      <div id="msg"></div>
+    </section>
+
+    <a class="adminlink" href="/admin.html">Painel do administrador</a>
+  </main>
+<script src="/app.js"></script>
+</body>
+</html>
