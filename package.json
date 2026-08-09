@@ -1,0 +1,16 @@
+{
+  "name": "glauco-barbeiro",
+  "version": "16.1.0",
+  "private": true,
+  "description": "Sistema de agendamento Glauco Barbeiro com painel admin e webhook WhatsApp.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
