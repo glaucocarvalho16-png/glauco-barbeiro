@@ -54,7 +54,13 @@ body {
   border: 3px solid var(--dourado);
   box-shadow: 0 0 20px rgba(212,175,55,.25);
 }
-
+.badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
 h1 {
   margin: 0 0 5px;
   font-size: 29px;
