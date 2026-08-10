@@ -7,13 +7,41 @@ async function loadServices(){
     const o=document.createElement('option');o.value=k;o.textContent=`${v.name} — ${v.duration} min`;service.appendChild(o);
   }
 }
-async function loadSlots(){
-  time.innerHTML='<option value="">Carregando...</option>';
-  if(!service.value||!date.value){time.innerHTML='<option value="">Selecione serviço e data</option>';return}
-  const data=await fetch(`/api/availability?date=${date.value}&service=${service.value}`).then(r=>r.json());
-  time.innerHTML='<option value="">Selecione</option>';
-  if(!data.slots.length){time.innerHTML='<option value="">Sem horários disponíveis</option>';return}
-  data.slots.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;time.appendChild(o)});
+async function loadSlots() {
+  time.innerHTML = '<option value="">Carregando...</option>';
+
+  if (!service.value || !date.value) {
+    time.innerHTML = '<option value="">Selecione serviço e data</option>';
+    return;
+  }
+
+  try {
+    const url = `/api/availability?date=${encodeURIComponent(date.value)}&service=${encodeURIComponent(service.value)}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Erro ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    time.innerHTML = '<option value="">Selecione um horário</option>';
+
+    if (!data.slots || data.slots.length === 0) {
+      time.innerHTML = '<option value="">Sem horários disponíveis</option>';
+      return;
+    }
+
+    data.slots.forEach(slot => {
+      const option = document.createElement('option');
+      option.value = slot;
+      option.textContent = slot;
+      time.appendChild(option);
+    });
+  } catch (error) {
+    console.error(error);
+    time.innerHTML = '<option value="">Erro ao carregar horários</option>';
+  }
 }
 service.onchange=loadSlots;date.onchange=loadSlots;
 
